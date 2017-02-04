@@ -3,12 +3,17 @@
 <head>
   <title>WithinOrg</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application',
+  'https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Poppins',
+   media: 'all', 'data-turbolinks-track' => true %>
+  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="" data-spy="scroll" data-target="#header" data-gr-c-s-loaded="true" data-pinterest-extension-installed="cr2.0.5" cz-shortcut-listen="true">
 
 <%= yield %>
 
 </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </html>
