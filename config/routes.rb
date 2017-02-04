@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'sign_in' => 'index#sign_in'
   get 'sign_up' => 'index#sign_up'
 
+
+  post "/admin/new" => "admin#create"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
