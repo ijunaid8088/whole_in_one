@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  schema_search_path: public
+  template: template0
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: within_org
+
+test:
+  <<: *default
+  database: within_org
+
+production:
+  <<: *default
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
