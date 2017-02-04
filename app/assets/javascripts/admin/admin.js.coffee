@@ -3,3 +3,4 @@
 #= require admin/jquery.apear.js
 #= require admin/landing.js
 #= require admin/sign_up.js.coffee
+#= require admin/notify.min.js

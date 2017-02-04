@@ -17,14 +17,15 @@ onSignUp = ->
     data.first_name = first_name
     data.last_name = last_name
     data.email = admin_email
-    data.password.admin_password
+    data.password = admin_password
 
-    onError = (jqXHR, status, error) ->
-      console.log error
+    onError = (result, status, jqXHR) ->
+      $.notify("#{result.responseText}", "error")
       false
 
     onSuccess = (result, status, jqXHR) ->
-      console.log result
+      clearForm()
+      $.notify("Hello #{result.first_name} #{result.last_name}! Your account has been created. Please login", "success")
       true
 
     settings =
@@ -38,6 +39,12 @@ onSignUp = ->
       url: "/admin/new"
 
     sendAJAXRequest(settings)
+
+clearForm = ->
+    $("#first_name").val("")
+    $("#last_name").val("")
+    $("#admin_email").val("")
+    $("#admin_password").val("")
 
 window.initializeSignUp = ->
   onSignUp()
