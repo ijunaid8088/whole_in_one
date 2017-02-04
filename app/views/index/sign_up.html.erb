@@ -5,19 +5,27 @@
             <form action="index.html">
                 <div class="list-group">
                     <div class="list-group-item">
-                        <input placeholder="Name" class="form-control no-border"> </div>
+                        <input id="first_name" placeholder="First Name" class="form-control no-border">
+                    </div>
                     <div class="list-group-item">
-                        <input type="email" placeholder="Email" class="form-control no-border"> </div>
+                        <input id="last_name" placeholder="Last Name" class="form-control no-border">
+                    </div>
                     <div class="list-group-item">
-                        <input type="password" placeholder="Password" class="form-control no-border"> </div>
+                        <input id="admin_email" type="email" placeholder="Email" class="form-control no-border">
+                    </div>
+                    <div class="list-group-item">
+                        <input id="admin_password" type="password" placeholder="Password" class="form-control no-border">
+                    </div>
                 </div>
-                <div class="checkbox m-b">
-                    <label>
-                        <input type="checkbox"> Agree the <a href="#">terms and policy</a> </label>
-                </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+                <div id="admin_sign_up" class="btn btn-lg btn-primary btn-block">Sign up</div>
                 <div class="line line-dashed"></div>
                 <p class="text-muted text-center"><small>Already have an account?</small></p> <a href="/sign_in" class="btn btn-lg btn-default btn-block">Sign in</a> </form>
         </section>
     </div>
 </section>
+
+<script>
+  $(document).ready(function () {
+    window.initializeSignUp();
+  });
+</script>

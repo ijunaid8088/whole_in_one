@@ -15,4 +15,16 @@
 
 /*
 @import "views/index/index"
-@import "views/index/landing*/"
+@import "views/index/landing*/
+
+
+.notifyjs-happyblue-base {
+  white-space: nowrap;
+  background-color: lightblue;
+  padding: 5px;
+}
+
+.notifyjs-happyblue-superblue {
+  color: white;
+  background-color: blue;
+}
