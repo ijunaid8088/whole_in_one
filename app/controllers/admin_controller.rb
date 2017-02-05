@@ -18,11 +18,7 @@ class AdminController < ApplicationController
         end
       end
     rescue => error
-      # Rails.logger.error error
-      # respond_to do |format|
-      #   format.html { redirect_to licence_report_path }
-      #   format.json { render json: error.message, status: :unprocessable_entity }
-      # end
+      Rails.logger.error error
     end
   end
 end
