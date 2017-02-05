@@ -11,7 +11,7 @@ class Admin < ActiveRecord::Base
 
   def create_hashed_password
     if password
-      self.password = Password.create(password, cost: 10)
+      self.password = Password.create(password)
     end
   end
 end

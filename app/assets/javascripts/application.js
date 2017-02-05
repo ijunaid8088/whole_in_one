@@ -13,3 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require admin/admin.js
+//= require bootstrap.min

@@ -6,7 +6,8 @@ class AdminController < ApplicationController
         first_name: params[:first_name],
         last_name: params[:last_name],
         email: params[:email],
-        password: params[:password]
+        password: params[:password],
+        is_admin: true
       )
       respond_to do |format|
         if @admin.save
@@ -18,11 +19,23 @@ class AdminController < ApplicationController
         end
       end
     rescue => error
-      # Rails.logger.error error
-      # respond_to do |format|
-      #   format.html { redirect_to licence_report_path }
-      #   format.json { render json: error.message, status: :unprocessable_entity }
-      # end
+      Rails.logger.error error
     end
+  end
+
+  def log_in
+    @admin = Admin.find_by_email(params[:email])
+    admin_hash = BCrypt::Password.new(@admin.password)
+    if @admin && admin_hash == params[:password] && @admin.is_admin
+      session[:admin_id] = @admin.id
+      redirect_to dashboard_path
+    else
+      redirect_to '/sign_in'
+    end
+  end
+
+  def log_out
+    reset_session
+    redirect_to '/sign_in'
   end
 end
