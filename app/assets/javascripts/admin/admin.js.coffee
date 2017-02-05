@@ -4,3 +4,7 @@
 #= require admin/landing.js
 #= require admin/sign_up.js.coffee
 #= require admin/notify.min.js
+#= require admin/metisMenu.min.js
+#= require admin/jquery.slimscroll.min.js
+
+
