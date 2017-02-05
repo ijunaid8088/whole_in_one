@@ -1,0 +1,33 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "views/bootstrap.min" %>
+  <%= stylesheet_link_tag "views/dashboard/icon.css" %>
+  <%= stylesheet_link_tag "views/dashboard/metisMenu.min.css" %>
+  <%= stylesheet_link_tag "views/dashboard/morris.css" %>
+  <%= stylesheet_link_tag "views/dashboard/style.css" %>
+<% end %>
+
+<div id="page-wrapper">
+
+  <!-- Top Bar Start -->
+  <%= render :partial => 'shared/topbar' %>
+  <!-- Page content start -->
+  <div class="page-contentbar">
+
+    <!--left navigation start-->
+    <%= render :partial => 'shared/sidebar' %>
+    <!--left navigation end-->
+
+    <!-- START PAGE CONTENT -->
+    <div id="page-right-content">
+    jkkjk
+      <!-- end container -->
+
+      <%= render :partial => 'shared/footer' %>
+      <!-- end footer -->
+
+    </div>
+    <!-- End #page-right-content -->
+
+  </div>
+  <!-- end .page-contentbar -->
+</div>
