@@ -12,3 +12,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( views/index/index.css )
 Rails.application.config.assets.precompile += %w( views/index/landing.css )
 Rails.application.config.assets.precompile += %w( views/bootstrap.min )
+Rails.application.config.assets.precompile += %w( views/dashboard/icon.css )
+Rails.application.config.assets.precompile += %w( views/dashboard/metisMenu.min.css )
+Rails.application.config.assets.precompile += %w( views/dashboard/morris.css )
+Rails.application.config.assets.precompile += %w( views/dashboard/style.css )
