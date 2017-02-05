@@ -28,9 +28,14 @@ class AdminController < ApplicationController
     admin_hash = BCrypt::Password.new(@admin.password)
     if @admin && admin_hash == params[:password] && @admin.is_admin
       session[:admin_id] = @admin.id
-      redirect_to '/'
+      redirect_to dashboard_path
     else
       redirect_to '/sign_in'
     end
+  end
+
+  def log_out
+    reset_session
+    redirect_to '/sign_in'
   end
 end
