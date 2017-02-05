@@ -1,4 +1,6 @@
 class IndexController < ApplicationController
+  before_action :logged_in
+
   def welcome
   end
 

@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def authorize_admin
     redirect_to sign_in_path if !session[:admin_id].present?
   end
+
+  def logged_in
+    redirect_to dashboard_path if session[:admin_id].present?
+  end
 end
