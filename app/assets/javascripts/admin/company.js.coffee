@@ -22,13 +22,21 @@ onSaveCompany = ->
     data.admin_id =  admin_id
 
     onError = (result, status, jqXHR) ->
-      console.log result.responseText
       $(".error-on-save")
         .removeClass "hidden"
         .text "#{result.responseText}"
       false
 
     onSuccess = (result, status, jqXHR) ->
+      newAppend =
+        "<tr>
+          <th scope='row'>#{result.id}</th>
+          <td>#{result.company_name}</td>
+          <td>#{result.namespace}</td>
+          <td>#{result.admin.first_name} #{result.admin.last_name}</td>
+          <td>#{result.created_at}</td>
+        </tr>"
+      $("#admin-company tbody").append(newAppend);
       $("#modal-add-company").modal("hide")
       $(".congrats-on-save")
         .removeClass "hidden"
@@ -36,7 +44,11 @@ onSaveCompany = ->
         .fadeIn()
         .delay(4000)
         .fadeOut()
-      # $(".congrats-on-save").addClass "hidden"
+      $(".error-on-save")
+        .addClass "hidden"
+        .text ""
+      $("#company-name").val("")
+      $("#namespace").val("")
       true
 
     settings =

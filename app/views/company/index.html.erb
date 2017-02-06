@@ -31,23 +31,27 @@
                     <strong>Well done!</strong> Company has been added.
                   </div>
                     <div class="m-b-20">
-                        <h5><div class="btn btn-primary btn-bordered" id="add-company">Add Company</div></h5>
-                        <table class="table table-striped m-0">
+                        <h5><button class="btn btn-primary btn-bordered" id="add-company">Add Company</button></h5>
+                        <table id="admin-company" class="table table-striped m-0">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>Company Name</th>
+                                    <th>Namespace</th>
+                                    <th>Owner Name</th>
+                                    <th>Created At</th>
                                 </tr>
                             </thead>
                             <tbody>
+                              <% @companies.each do |company| %>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                  <th scope='row'><%= company.id %></th>
+                                  <td><%= company.company_name %></td>
+                                  <td><%= company.namespace %></td>
+                                  <td><%= company.admin.full_name %></td>
+                                  <td><%= company.created %></td>
                                 </tr>
+                              <% end -%>
                             </tbody>
                         </table>
                     </div>

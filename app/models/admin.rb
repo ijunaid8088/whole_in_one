@@ -10,6 +10,10 @@ class Admin < ActiveRecord::Base
 
   validates_length_of :password, minimum: 6, if: :password_changed?
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def create_hashed_password
     if password
       self.password = Password.create(password)

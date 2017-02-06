@@ -1,6 +1,7 @@
 class CompanyController < ApplicationController
 
   def index
+    @companies =  Company.all
   end
 
   def create
@@ -12,7 +13,7 @@ class CompanyController < ApplicationController
       )
       respond_to do |format|
         if @company.save
-          format.json { render json: @company.to_json() }
+          format.json { render json: @company.to_json(include: [:admin]) }
           Rails.logger.info "Company has been created."
         else
           format.json { render json: @company.errors.full_messages.first, status: :unprocessable_entity }
