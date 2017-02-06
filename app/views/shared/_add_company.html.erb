@@ -1,17 +1,40 @@
 <div id="modal-add-company" class="modal fade">
-  <div class="modal-dialog" style="width:500px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="caption"><strong>Add Licence</strong></div>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <div class="pull-right">
-          <button type="button" class="btn btn-default grey hide" id="update-licence">Update</button>
-          <button type="button" class="btn btn-default grey" id="save-licence">Save</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center" style="width:45%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="caption"><h2>Add Company Details</h2></div>
         </div>
+        <div class="modal-body">
+          <div class="alert alert-danger alert-dismissible fade in hidden error-on-save" role="alert">
+              <strong>Oh snap!</strong> <p id="error-reason"></p>
+          </div>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Name:</label>
+                <div class="col-md-10">
+                  <input id="company-name" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Namespace:</label>
+                <div class="col-md-10">
+                  <input id="namespace" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group hidden">
+                <div class="col-md-10">
+                  <input id="admin-id" type="text" class="form-control" value="<%= current_user.id %>">
+                </div>
+            </div>
+          </form>
+        </div>
+        <fieldset>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-danger pull-right marging-left" id="nothing">Close</button>
+            <button type="button" class="btn btn-warning pull-right" id="save-company">Save</button>
+          </div>
+        </fieldset>
       </div>
     </div>
   </div>
