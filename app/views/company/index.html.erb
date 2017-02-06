@@ -1,0 +1,81 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "views/bootstrap.min" %>
+  <%= stylesheet_link_tag "views/dashboard/icon.css" %>
+  <%= stylesheet_link_tag "views/dashboard/metisMenu.min.css" %>
+  <%= stylesheet_link_tag "views/dashboard/morris.css" %>
+  <%= stylesheet_link_tag "views/dashboard/style.css" %>
+<% end %>
+
+<div id="page-wrapper">
+
+  <!-- Top Bar Start -->
+  <%= render :partial => 'shared/topbar' %>
+  <!-- Page content start -->
+  <div class="page-contentbar">
+
+    <!--left navigation start-->
+    <%= render :partial => 'shared/sidebar' %>
+    <%= render :partial => 'shared/add_company' %>
+    <!--left navigation end-->
+
+    <!-- START PAGE CONTENT -->
+    <div id="page-right-content">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="header-title">Your Company</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="alert alert-icon alert-success alert-dismissible fade in hidden congrats-on-save" role="alert">
+                    <i class="mdi mdi-check-all"></i>
+                    <strong>Well done!</strong> Company has been added.
+                  </div>
+                    <div class="m-b-20">
+                        <h5><button class="btn btn-primary btn-bordered" id="add-company">Add Company</button></h5>
+                        <table id="admin-company" class="table table-striped m-0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Company Name</th>
+                                    <th>Namespace</th>
+                                    <th>Owner Name</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <% @companies.each do |company| %>
+                                <tr>
+                                  <th scope='row'><%= company.id %></th>
+                                  <td><%= company.company_name %></td>
+                                  <td><%= company.namespace %></td>
+                                  <td><%= company.admin.full_name %></td>
+                                  <td><%= company.created %></td>
+                                </tr>
+                              <% end -%>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--- end row -->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+  </div>
+      <!-- end container -->
+
+      <%= render :partial => 'shared/footer' %>
+      <!-- end footer -->
+
+    </div>
+    <!-- End #page-right-content -->
+
+  </div>
+  <!-- end .page-contentbar -->
+</div>
+
+<script>
+  $(document).ready(function () {
+    window.initializeCompany();
+  });
+</script>

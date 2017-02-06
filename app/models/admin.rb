@@ -6,8 +6,13 @@ class Admin < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
+  has_one :company
 
   validates_length_of :password, minimum: 6, if: :password_changed?
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def create_hashed_password
     if password
