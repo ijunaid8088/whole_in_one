@@ -2342,3 +2342,27 @@ h3.timeline-title {
   vertical-align: middle;
   display: inline-block;
   height: 17px; }
+
+.vertical-alignment-helper {
+  display: table;
+  height: 100%;
+  pointer-events: none;
+  width: 100%;
+}
+
+.vertical-align-center {
+  display: table-cell;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+.modal-content {
+  width: inherit;
+  height: inherit;
+  margin: 0 auto;
+  pointer-events: all;
+}
+
+.marging-left {
+  margin-left: 5px;
+}
