@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require dataTables/jquery.dataTables
 //= require jquery_ujs
 //= require bootstrap.min
-//= require dataTables/jquery.dataTables
 //= require admin/admin.js
