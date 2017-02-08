@@ -9,7 +9,7 @@ sendAJAXRequest = (settings) ->
 company_table = undefined
 
 initializeDataTable = ->
-  company_table = $("#archive_datatables").DataTable
+  company_table = $("#comapny_datatables").DataTable
     aaSorting: [1, "asc"]
     aLengthMenu: [
       [25, 50, 100, 200, -1]
@@ -65,7 +65,7 @@ onSaveCompany = ->
           <td>#{result.admin.first_name} #{result.admin.last_name}</td>
           <td>#{result.created_at}</td>
         </tr>"
-      $("#archive_datatables tbody").append(newAppend);
+      $("#comapny_datatables tbody").append(newAppend);
       $("#modal-add-company").modal("hide")
       $(".congrats-on-save")
         .removeClass "hidden"
