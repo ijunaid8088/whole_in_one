@@ -15,7 +15,7 @@
 
     <!--left navigation start-->
     <%= render :partial => 'shared/sidebar' %>
-    <%= render :partial => 'shared/add_company' %>
+    <%= render :partial => 'shared/add_user' %>
     <!--left navigation end-->
 
     <!-- START PAGE CONTENT -->
@@ -36,13 +36,26 @@
                             <thead>
                                 <tr role="row" class="heading">
                                     <th name="order_id" class="sorting">#</th>
-                                    <th name="order_name" class="sorting">Company Name</th>
-                                    <th name="order_namespace" class="sorting">Namespace</th>
-                                    <th name="order_name" class="sorting">Owner Name</th>
+                                    <th name="order_fullname" class="sorting">Fullname</th>
+                                    <th name="order_username" class="sorting">Username</th>
+                                    <th name="order_email" class="sorting">Email</th>
+                                    <th name="order_company" class="sorting">Company</th>
                                     <th name="order_created_at" class="sorting">Created At</th>
+                                    <th name="" class="sorting"></th>
                                 </tr>
                             </thead>
                             <tbody>
+                              <% @users.each do |user| %>
+                                <tr>
+                                  <th scope='row'><%= user.id %></th>
+                                  <td><%= user.fullname %></td>
+                                  <td><%= user.username %></td>
+                                  <td><%= user.email %></td>
+                                  <td><%= user.company.company_name %></td>
+                                  <td><%= user.created %></td>
+                                  <td><i user-id='<%= user.id %>' class='fa fa-trash-o delete-user'></i></td>
+                                </tr>
+                              <% end -%>
                             </tbody>
                         </table>
                     </div>

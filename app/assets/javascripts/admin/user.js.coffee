@@ -6,21 +6,23 @@ sendAJAXRequest = (settings) ->
     settings.headers = headers
   xhrRequestChangeMonth = jQuery.ajax(settings)
 
-company_table = undefined
+users_table = undefined
 
 initializeDataTable = ->
-  company_table = $("#comapny_datatables").DataTable
+  users_table = $("#users_datatables").DataTable
     aaSorting: [1, "asc"]
     aLengthMenu: [
       [25, 50, 100, 200, -1]
       [25, 50, 100, 200, "All"]
     ]
     columns: [
-      {data: "0", sWidth: "145px" },
-      {data: "1", sWidth: "150px" },
-      {data: "2", sWidth: "200px" },
+      {data: "0", sWidth: "55px" },
+      {data: "1", sWidth: "145px" },
+      {data: "2", sWidth: "100px" },
       {data: "3", sWidth: "150px" },
       {data: "4", sWidth: "150px" },
+      {data: "5", sWidth: "150px" },
+      {data: "6", sWidth: "50px" },
     ],
     iDisplayLength: 500
     columnDefs: [
@@ -35,38 +37,34 @@ initializeDataTable = ->
       # $("#div-dropdown-checklist").css({"visibility": "visible", "width": "57px", "top": "0px", "left": "6px" })
       #do something here
 
-onAddCompany = ->
-  $("#add-company").on "click", ->
-    $("#modal-add-company").modal("show")
+onAddUser = ->
+  $("#add-user").on "click", ->
+    $("#modal-add-user").modal("show")
 
-onSaveCompany = ->
-  $("#save-company").on "click", ->
-    companyName = $("#company-name").val()
-    namespace = $("#namespace").val()
-    admin_id = $("#admin-id").val()
-
+addUser = ->
+  $("#save-user").on "click", ->
     data = {}
-    data.company_name = companyName
-    data.namespace = namespace
-    data.admin_id =  admin_id
+    data.firstname = $("#firstname").val()
+    data.lastname = $("#lastname").val()
+    data.username = $("#username").val()
+    data.is_first_login = true
 
-    onError = (result, status, jqXHR) ->
+    company_data = $("#company-data").val().split(':')
+    data.company_id = company_data[0]
+    username = $("#username").val()
+    data.email = "#{username}@#{company_data[1]}"
+
+    onError = (jqXHR, status, error) ->
       $(".error-on-save")
         .removeClass "hidden"
-        .text "#{result.responseText}"
+        .text "#{jqXHR.responseText}"
       false
 
     onSuccess = (result, status, jqXHR) ->
-      newAppend =
-        "<tr>
-          <th scope='row'>#{result.id}</th>
-          <td>#{result.company_name}</td>
-          <td>#{result.namespace}</td>
-          <td>#{result.admin.first_name} #{result.admin.last_name}</td>
-          <td>#{result.created_at}</td>
-        </tr>"
-      $("#comapny_datatables tbody").append(newAppend);
-      $("#modal-add-company").modal("hide")
+      console.log result
+      $('#modal-add-user').modal('hide')
+      clearForm()
+      addNewRow(result)
       $(".congrats-on-save")
         .removeClass "hidden"
         .delay(200)
@@ -76,8 +74,6 @@ onSaveCompany = ->
       $(".error-on-save")
         .addClass "hidden"
         .text ""
-      $("#company-name").val("")
-      $("#namespace").val("")
       true
 
     settings =
@@ -88,21 +84,33 @@ onSaveCompany = ->
       success: onSuccess
       contentType: "application/x-www-form-urlencoded"
       type: "POST"
-      url: "/company/new"
+      url: "/users/new"
 
     sendAJAXRequest(settings)
 
-onClose = ->
-  $("#nothing").on "click", ->
-    $(".congrats-on-save").addClass "hidden"
-    $(".error-on-save")
-      .addClass "hidden"
-      .text ""
-    $("#company-name").val("")
-    $("#namespace").val("")
+clearForm = ->
+  $("#firstname").val("")
+  $("#lastname").val("")
+  $("#username").val("")
+
+addNewRow = (user) ->
+  users_table.row.add([
+    "#{user.id}",
+    "#{user.firstname} #{user.lastname}",
+    "#{user.username}",
+    "#{user.email}",
+    "#{user.company.company_name}",
+    "#{formatDate(user.created_at)}",
+    "<i user-id='#{user.id}' class='fa fa-trash-o delete-user'></i>"
+  ]).draw()
+
+formatDate = (date) ->
+  date = new Date(date)
+  date.toUTCString()
 
 window.initializeUser = ->
-  # initializeDataTable()
-  # onAddCompany()
+  initializeDataTable()
+  onAddUser()
+  addUser()
   # onSaveCompany()
   # onClose()

@@ -11,28 +11,34 @@
           </div>
           <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-2 control-label">Name:</label>
-                <div class="col-md-10">
-                  <input id="company-name" type="text" class="form-control">
-                </div>
+              <label class="col-md-3 control-label">First Name:</label>
+              <div class="col-md-8">
+                <input id="firstname" type="text" class="form-control">
+              </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">Namespace:</label>
-                <div class="col-md-10">
-                  <input id="namespace" type="text" class="form-control">
-                </div>
+              <label class="col-md-3 control-label">Last Name:</label>
+              <div class="col-md-8">
+                <input id="lastname" type="text" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Username:</label>
+              <div class="col-md-8">
+                <input id="username" type="text" class="form-control">
+              </div>
             </div>
             <div class="form-group hidden">
-                <div class="col-md-10">
-                  <input id="admin-id" type="text" class="form-control" value="<%= current_user.id %>">
-                </div>
+              <div class="col-md-10">
+                <input id="company-data" type="text" class="form-control" value="<%= current_user.company.id %>:<%= current_user.company.namespace %>">
+              </div>
             </div>
           </form>
         </div>
         <fieldset>
           <div class="modal-footer">
             <button type="button" data-dismiss="modal" class="btn btn-danger pull-right marging-left" id="nothing">Close</button>
-            <button type="button" class="btn btn-warning pull-right" id="save-company">Save</button>
+            <button type="button" class="btn btn-warning pull-right" id="save-user">Save</button>
           </div>
         </fieldset>
       </div>
