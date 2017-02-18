@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   root 'index#welcome'
   post "/admin/new" => "admin#create"
   post "/company/new" => "company#create"
+  post "/users/new" => "users#create"
   get 'sign_in' => 'index#sign_in'
   get 'sign_up' => 'index#sign_up'
   get "dashboard" => "dashboard#index"
   get "company" => "company#index"
+  get "users" => "users#index"
 
   put "/admin/session" => "admin#log_in"
   get "/admin/log_out" => "admin#log_out"
