@@ -1,0 +1,72 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "views/bootstrap.min" %>
+  <%= stylesheet_link_tag "views/dashboard/icon.css" %>
+  <%= stylesheet_link_tag "views/dashboard/metisMenu.min.css" %>
+  <%= stylesheet_link_tag "views/dashboard/morris.css" %>
+  <%= stylesheet_link_tag "views/dashboard/style.css" %>
+<% end %>
+
+<div id="page-wrapper">
+
+  <!-- Top Bar Start -->
+  <%= render :partial => 'shared/topbar' %>
+  <!-- Page content start -->
+  <div class="page-contentbar">
+
+    <!--left navigation start-->
+    <%= render :partial => 'shared/sidebar' %>
+    <%= render :partial => 'shared/add_company' %>
+    <!--left navigation end-->
+
+    <!-- START PAGE CONTENT -->
+    <div id="page-right-content">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="header-title">Your Users</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="alert alert-icon alert-success alert-dismissible fade in hidden congrats-on-save" role="alert">
+                    <i class="mdi mdi-check-all"></i>
+                    <strong>Well done!</strong> User has been added.
+                  </div>
+                    <div class="m-b-20">
+                        <h5><button class="btn btn-primary btn-bordered" id="add-user">Add User</button></h5>
+                        <table id="users_datatables" class="table table-striped m-0">
+                            <thead>
+                                <tr role="row" class="heading">
+                                    <th name="order_id" class="sorting">#</th>
+                                    <th name="order_name" class="sorting">Company Name</th>
+                                    <th name="order_namespace" class="sorting">Namespace</th>
+                                    <th name="order_name" class="sorting">Owner Name</th>
+                                    <th name="order_created_at" class="sorting">Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--- end row -->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+  </div>
+      <!-- end container -->
+
+      <%= render :partial => 'shared/footer' %>
+      <!-- end footer -->
+
+    </div>
+    <!-- End #page-right-content -->
+
+  </div>
+  <!-- end .page-contentbar -->
+</div>
+
+<script>
+  $(document).ready(function () {
+    window.initializeUser();
+  });
+</script>
