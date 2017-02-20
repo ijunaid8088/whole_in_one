@@ -12,6 +12,10 @@
 </head>
 <body class="" data-spy="scroll" data-target="#header" data-gr-c-s-loaded="true" data-pinterest-extension-installed="cr2.0.5" cz-shortcut-listen="true">
 
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+<% end %>
+
 <%= yield %>
 
 </body>

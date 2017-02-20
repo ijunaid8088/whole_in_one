@@ -25,12 +25,17 @@ class AdminController < ApplicationController
 
   def log_in
     @admin = Admin.find_by_email(params[:email])
-    admin_hash = BCrypt::Password.new(@admin.password)
-    if @admin && admin_hash == params[:password] && @admin.is_admin
-      session[:admin_id] = @admin.id
-      redirect_to dashboard_path
+    unless @admin.present?
+      redirect_to '/sign_in', :danger => "Username or Password was wrong."
+      # redirect_to '/sign_in'
     else
-      redirect_to '/sign_in'
+      admin_hash = BCrypt::Password.new(@admin.password)
+      if @admin && admin_hash == params[:password] && @admin.is_admin
+        session[:admin_id] = @admin.id
+        redirect_to dashboard_path
+      else
+        redirect_to '/sign_in'
+      end
     end
   end
 
