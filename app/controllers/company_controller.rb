@@ -1,7 +1,7 @@
 class CompanyController < ApplicationController
 
   def index
-    @companies =  Company.all
+    @companies =  Company.where(admin_id: current_user.id)
   end
 
   def create
