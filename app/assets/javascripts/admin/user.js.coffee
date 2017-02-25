@@ -22,7 +22,8 @@ initializeDataTable = ->
       {data: "3", sWidth: "150px" },
       {data: "4", sWidth: "150px" },
       {data: "5", sWidth: "150px" },
-      {data: "6", sWidth: "50px" },
+      {data: "6", sWidth: "150px" },
+      {data: "7", sWidth: "50px" },
     ],
     iDisplayLength: 500
     columnDefs: [
@@ -53,6 +54,7 @@ addUser = ->
     data.company_id = company_data[0]
     username = $("#username").val()
     data.email = "#{username}@#{company_data[1]}"
+    data.actual_password = makePassword($("#firstname").val(), $("#lastname").val())
 
     onError = (jqXHR, status, error) ->
       $(".error-on-save")
@@ -100,6 +102,7 @@ addNewRow = (user) ->
     "#{user.username}",
     "#{user.email}",
     "#{user.company.company_name}",
+    "#{user.actual_password}",
     "#{formatDate(user.created_at)}",
     "<i user-id='#{user.id}' class='fa fa-trash-o delete-user'></i>"
   ]).draw()
@@ -108,9 +111,16 @@ formatDate = (date) ->
   date = new Date(date)
   date.toUTCString()
 
+makePassword = (firstname, lastname) ->
+  text = ""
+  possible = "#{firstname}#{lastname}0123456789"
+  i = 0
+  while i < 8
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
+    i++
+  text
+
 window.initializeUser = ->
   initializeDataTable()
   onAddUser()
   addUser()
-  # onSaveCompany()
-  # onClose()

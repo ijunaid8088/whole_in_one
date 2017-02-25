@@ -13,7 +13,9 @@ class UsersController < ApplicationController
         username: params[:username],
         email: params[:email],
         company_id: params[:company_id],
-        is_first_login: params[:is_first_login]
+        is_first_login: params[:is_first_login],
+        actual_password: params[:actual_password],
+        password: params[:actual_password]
       )
       respond_to do |format|
         if @user.save
