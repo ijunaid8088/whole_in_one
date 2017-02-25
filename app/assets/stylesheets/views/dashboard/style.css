@@ -2366,3 +2366,7 @@ h3.timeline-title {
 .marging-left {
   margin-left: 5px;
 }
+
+#users_datatables_length {
+  display: none;
+}

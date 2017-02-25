@@ -40,6 +40,7 @@
                                     <th name="order_username" class="sorting">Username</th>
                                     <th name="order_email" class="sorting">Email</th>
                                     <th name="order_company" class="sorting">Company</th>
+                                    <th name="order_password" class="sorting">Password</th>
                                     <th name="order_created_at" class="sorting">Created At</th>
                                     <th name="" class="sorting"></th>
                                 </tr>
@@ -52,6 +53,7 @@
                                   <td><%= user.username %></td>
                                   <td><%= user.email %></td>
                                   <td><%= user.company.company_name %></td>
+                                  <td><%= user.actual_password %></td>
                                   <td><%= user.created %></td>
                                   <td><i user-id='<%= user.id %>' class='fa fa-trash-o delete-user'></i></td>
                                 </tr>
