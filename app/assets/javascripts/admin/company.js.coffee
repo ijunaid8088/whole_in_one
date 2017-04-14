@@ -21,6 +21,7 @@ initializeDataTable = ->
       {data: "2", sWidth: "200px" },
       {data: "3", sWidth: "150px" },
       {data: "4", sWidth: "150px" },
+      {data: "5", sWidth: "150px", sClass: "center point_me" },
     ],
     iDisplayLength: 500
     columnDefs: [
@@ -64,9 +65,11 @@ onSaveCompany = ->
           <td>#{result.namespace}</td>
           <td>#{result.admin.first_name} #{result.admin.last_name}</td>
           <td>#{result.created_at}</td>
+          <td class='point_me center'><i class='fa fa-trash-o'></i></td>
         </tr>"
       $("#comapny_datatables tbody").append(newAppend);
       $("#modal-add-company").modal("hide")
+      $("#add-company").hide()
       $(".congrats-on-save")
         .removeClass "hidden"
         .delay(200)
@@ -101,8 +104,42 @@ onClose = ->
     $("#company-name").val("")
     $("#namespace").val("")
 
+onDeleteCompany = ->
+  $(".delete-me").on "click", ->
+    tr_to_delete = $(this).parent("tr:first")
+    console.log $(this).data("company-id")
+
+    data = {}
+    data.company_id = $(this).data("company-id")
+
+    onError = (result, status, jqXHR) ->
+      $(".error-on-save")
+        .removeClass "hidden"
+        .text "#{result.responseText}"
+      false
+
+    onSuccess = (result, status, jqXHR) ->
+      addButton =
+        '<h5><button class="btn btn-primary btn-bordered" id="add-company">Add Company</button></h5>'
+      $(".m-b-20").prepend(addButton)
+      tr_to_delete.remove()
+      true
+
+    settings =
+      cache: false
+      data: data
+      dataType: 'json'
+      error: onError
+      success: onSuccess
+      contentType: "application/x-www-form-urlencoded"
+      type: "DELETE"
+      url: "/company/delete"
+
+    sendAJAXRequest(settings)    
+
 window.initializeCompany = ->
   initializeDataTable()
   onAddCompany()
   onSaveCompany()
   onClose()
+  onDeleteCompany()

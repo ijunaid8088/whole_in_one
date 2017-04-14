@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   put "/admin/session" => "admin#log_in"
   get "/admin/log_out" => "admin#log_out"
+
+  delete "/company/delete" => "company#delete"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

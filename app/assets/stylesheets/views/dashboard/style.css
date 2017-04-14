@@ -2370,3 +2370,11 @@ h3.timeline-title {
 #users_datatables_length {
   display: none;
 }
+
+.center {
+  text-align: center;
+}
+
+.point_me {
+  cursor: pointer;
+}

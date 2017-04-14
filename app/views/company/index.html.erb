@@ -42,6 +42,7 @@
                                     <th name="order_namespace" class="sorting">Namespace</th>
                                     <th name="order_name" class="sorting">Owner Name</th>
                                     <th name="order_created_at" class="sorting">Created At</th>
+                                    <th name="order_delete" class="sorting"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,7 @@
                                   <td><%= company.namespace %></td>
                                   <td><%= company.admin.full_name %></td>
                                   <td><%= company.created %></td>
+                                  <td class="delete-me" data-company-id='<%= company.id %>'><i class="fa fa-trash-o"></i></td>
                                 </tr>
                               <% end -%>
                             </tbody>
