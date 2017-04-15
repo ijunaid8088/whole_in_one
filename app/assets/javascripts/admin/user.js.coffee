@@ -136,7 +136,10 @@ onDeleteUser = ->
 
     onSuccess = (result, status, jqXHR) ->
       console.log "hihhh"
-      tr_to_delete.remove()
+      users_table
+          .row( tr_to_delete )
+          .remove()
+          .draw()
       $(".congrats-on-save")
         .removeClass "hidden"
         .text("User has been deleted.")
