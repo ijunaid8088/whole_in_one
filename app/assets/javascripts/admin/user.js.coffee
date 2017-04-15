@@ -23,7 +23,7 @@ initializeDataTable = ->
       {data: "4", sWidth: "150px" },
       {data: "5", sWidth: "150px" },
       {data: "6", sWidth: "150px" },
-      {data: "7", sWidth: "50px" },
+      {data: "7", sWidth: "50px", sClass: "center point_me" },
     ],
     iDisplayLength: 500
     columnDefs: [
@@ -104,7 +104,7 @@ addNewRow = (user) ->
     "#{user.company.company_name}",
     "#{user.actual_password}",
     "#{formatDate(user.created_at)}",
-    "<i user-id='#{user.id}' class='fa fa-trash-o delete-user'></i>"
+    "<i data-user-id='#{user.id}' class='fa fa-trash-o delete-user'></i>"
   ]).draw()
 
 formatDate = (date) ->
@@ -120,7 +120,49 @@ makePassword = (firstname, lastname) ->
     i++
   text
 
+onDeleteUser = ->
+  $("#users_datatables").on "click", ".delete-user", ->
+    console.log $(this).data("user-id")
+    tr_to_delete = $(this).closest('tr')
+
+    data = {}
+    data.user_id = $(this).data("user-id")
+
+    onError = (jqXHR, status, error) ->
+      $(".error-on-save")
+        .removeClass "hidden"
+        .text "#{jqXHR.responseText}"
+      false
+
+    onSuccess = (result, status, jqXHR) ->
+      console.log "hihhh"
+      tr_to_delete.remove()
+      $(".congrats-on-save")
+        .removeClass "hidden"
+        .text("User has been deleted.")
+        .delay(200)
+        .fadeIn()
+        .delay(4000)
+        .fadeOut()
+      $(".error-on-save")
+        .addClass "hidden"
+        .text ""
+      true
+
+    settings =
+      cache: false
+      data: data
+      dataType: 'json'
+      error: onError
+      success: onSuccess
+      contentType: "application/x-www-form-urlencoded"
+      type: "DELETE"
+      url: "/users/delete"
+
+    sendAJAXRequest(settings)
+
 window.initializeUser = ->
   initializeDataTable()
   onAddUser()
   addUser()
+  onDeleteUser()

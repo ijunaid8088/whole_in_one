@@ -29,4 +29,20 @@ class UsersController < ApplicationController
       Rails.logger.error error
     end
   end
+
+  def delete
+    begin
+      @user = User.find(params[:user_id])
+      respond_to do |format|
+        if @user.destroy
+          format.json { render json: "1" }
+          Rails.logger.info "User has been Deleted."
+        else
+          format.json { render json: @user.errors.full_messages.first, status: :unprocessable_entity }
+        end
+      end
+    rescue => error
+      Rails.logger.error error
+    end
+  end
 end
