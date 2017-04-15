@@ -25,7 +25,7 @@
         <div class="col-sm-12">
             <h4 class="header-title">Your Company</h4>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 create-comp">
                   <div class="alert alert-icon alert-success alert-dismissible fade in hidden congrats-on-save" role="alert">
                     <i class="mdi mdi-check-all"></i>
                     <strong>Well done!</strong> Company has been added.
@@ -53,7 +53,7 @@
                                   <td><%= company.namespace %></td>
                                   <td><%= company.admin.full_name %></td>
                                   <td><%= company.created %></td>
-                                  <td class="delete-me" data-company-id='<%= company.id %>'><i class="fa fa-trash-o"></i></td>
+                                  <td><i data-company-id='<%= company.id %>' class="fa fa-trash-o delete-me"></i></td>
                                 </tr>
                               <% end -%>
                             </tbody>

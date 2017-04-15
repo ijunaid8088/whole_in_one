@@ -37,7 +37,7 @@ initializeDataTable = ->
       #do something here
 
 onAddCompany = ->
-  $("#add-company").on "click", ->
+  $(".create-comp").on "click", "#add-company", ->
     $("#modal-add-company").modal("show")
 
 onSaveCompany = ->
@@ -58,16 +58,7 @@ onSaveCompany = ->
       false
 
     onSuccess = (result, status, jqXHR) ->
-      newAppend =
-        "<tr>
-          <th scope='row'>#{result.id}</th>
-          <td>#{result.company_name}</td>
-          <td>#{result.namespace}</td>
-          <td>#{result.admin.first_name} #{result.admin.last_name}</td>
-          <td>#{result.created_at}</td>
-          <td class='point_me center'><i class='fa fa-trash-o'></i></td>
-        </tr>"
-      $("#comapny_datatables tbody").append(newAppend);
+      addNewRow(result)
       $("#modal-add-company").modal("hide")
       $("#add-company").hide()
       $(".congrats-on-save")
@@ -95,6 +86,16 @@ onSaveCompany = ->
 
     sendAJAXRequest(settings)
 
+addNewRow = (result) ->
+  company_table.row.add([
+        "#{result.id}",
+        "#{result.company_name}",
+        "#{result.namespace}",
+        "#{result.admin.first_name} #{result.admin.last_name}",
+        "#{result.created_at}",
+        "<i data-company-id='#{result.id}' class='fa fa-trash-o delete-me'></i>"
+  ]).draw()
+
 onClose = ->
   $("#nothing").on "click", ->
     $(".congrats-on-save").addClass "hidden"
@@ -105,8 +106,8 @@ onClose = ->
     $("#namespace").val("")
 
 onDeleteCompany = ->
-  $(".delete-me").on "click", ->
-    tr_to_delete = $(this).parent("tr:first")
+  $("#comapny_datatables").on "click", ".delete-me", ->
+    tr_to_delete = $(this).closest("tr")
     console.log $(this).data("company-id")
 
     data = {}
@@ -122,7 +123,11 @@ onDeleteCompany = ->
       addButton =
         '<h5><button class="btn btn-primary btn-bordered" id="add-company">Add Company</button></h5>'
       $(".m-b-20").prepend(addButton)
-      tr_to_delete.remove()
+      company_table
+          .row( tr_to_delete )
+          .remove()
+          .draw()
+      # tr_to_delete.remove()
       true
 
     settings =
